@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        --background: 0.08 0 0;
+        --foreground: 0.98 0 0;
+        --card: 0.12 0 0;
+        --card-foreground: 0.98 0 0;
+        --popover: 0.12 0 0;
+        --popover-foreground: 0.98 0 0;
+        --primary: 0.75 0.35 145;
+        --primary-foreground: 0.08 0 0;
+        --secondary: 0.20 0 0;
+        --secondary-foreground: 0.98 0 0;
+        --muted: 0.18 0 0;
+        --muted-foreground: 0.60 0 0;
+        --accent: 0.75 0.30 190;
+        --accent-foreground: 0.08 0 0;
+        --destructive: 0.60 0.25 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.75 0.35 145 / 15%;
+        --input: 0.75 0.35 145 / 20%;
+        --ring: 0.75 0.35 145;
+        --chart-1: 0.75 0.35 145;
+        --chart-2: 0.75 0.30 190;
+        --chart-3: 0.65 0.35 320;
+        --chart-4: 0.60 0.25 25;
+        --chart-5: 0.70 0.30 50;
+    }
+
+    .dark {
+        --background: 0.08 0 0;
+        --foreground: 0.98 0 0;
+        --card: 0.12 0 0;
+        --card-foreground: 0.98 0 0;
+        --popover: 0.12 0 0;
+        --popover-foreground: 0.98 0 0;
+        --primary: 0.75 0.35 145;
+        --primary-foreground: 0.08 0 0;
+        --secondary: 0.20 0 0;
+        --secondary-foreground: 0.98 0 0;
+        --muted: 0.18 0 0;
+        --muted-foreground: 0.60 0 0;
+        --accent: 0.75 0.30 190;
+        --accent-foreground: 0.08 0 0;
+        --destructive: 0.60 0.25 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.75 0.35 145 / 15%;
+        --input: 0.75 0.35 145 / 20%;
+        --ring: 0.75 0.35 145;
+        --chart-1: 0.75 0.35 145;
+        --chart-2: 0.75 0.30 190;
+        --chart-3: 0.65 0.35 320;
+        --chart-4: 0.60 0.25 25;
+        --chart-5: 0.70 0.30 50;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+}
+
+@layer utilities {
+    .neon-button {
+        @apply relative overflow-hidden bg-gradient-to-r from-[#00ff41] to-[#00d9ff] text-[#0a0e27] font-semibold;
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        transition: all 0.3s ease;
+    }
+    
+    .neon-button:hover {
+        box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        transform: translateY(-2px);
+    }
+    
+    .glow-card {
+        transition: all 0.3s ease;
+    }
+    
+    .glow-card:hover {
+        box-shadow: 0 0 30px rgba(0, 255, 65, 0.15);
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');

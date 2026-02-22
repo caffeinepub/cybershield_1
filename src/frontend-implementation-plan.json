@@ -1,0 +1,65 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add digital signature functionality for network configurations and security policies",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Add a 'Sign Policy' button to each PolicyCard component that calls the backend sign function and updates the UI to show signature status",
+      "acceptanceCriteria": [
+        "Each policy card displays a 'Sign Policy' button",
+        "Button is disabled if policy is already signed",
+        "Clicking the button triggers the sign mutation",
+        "UI shows loading state during signing",
+        "Success/error toast notifications are displayed",
+        "Signed status is visually indicated with an icon or badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/policies/PolicyCard.tsx",
+          "operation": "modify",
+          "description": "Add a 'Sign Policy' button that calls the useSignPolicy mutation hook. Display button with loading state during signing. Disable button if policy.digitalSignature is present. Show signed status with a checkmark icon or badge when policy has a digitalSignature. Import and use the useSignPolicy hook and display toast notifications on success/error."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Display signature verification status on the SecurityPolicies page showing whether each policy's signature is valid, invalid, or unsigned",
+      "acceptanceCriteria": [
+        "Each policy card shows signature status with color-coded badge",
+        "Status options: 'Signed & Valid' (green), 'Invalid Signature' (red), 'Unsigned' (gray)",
+        "Status is automatically verified when policies are loaded",
+        "Status updates when policies are modified or signed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/policies/PolicyCard.tsx",
+          "operation": "modify",
+          "description": "Add verification status display to PolicyCard. Call useVerifyPolicySignature query hook for each policy to get validation status. Display color-coded badge: 'Signed & Valid' (green) when signature is valid, 'Invalid Signature' (red) when signature verification fails, 'Unsigned' (gray) when no digitalSignature exists. Handle loading and error states for verification queries."
+        },
+        {
+          "path": "frontend/src/pages/SecurityPolicies.tsx",
+          "operation": "modify",
+          "description": "Ensure the page properly passes policy data including digitalSignature field to PolicyCard components. The verification status will automatically update when policies are refetched after signing operations due to cache invalidation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Create React Query hooks for signing policies and verifying policy signatures with proper cache invalidation",
+      "acceptanceCriteria": [
+        "useSignPolicy mutation hook calls the backend sign function",
+        "useVerifyPolicySignature query hook calls the backend verify function",
+        "Signing a policy invalidates the policies query cache",
+        "Hooks follow the same pattern as existing useQueries hooks"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add useSignPolicy mutation hook that calls actor.storePolicySignature with policyId and generated signature. Invalidate 'policies' query key on success. Add useVerifyPolicySignature query hook that calls actor.getPolicySignature and compares it with a locally computed signature to determine validity. Follow existing patterns from useAddThreat and useGetAllPolicies hooks. Both hooks should accept the actor from useActor hook and use queryClient for cache invalidation."
+        }
+      ]
+    }
+  ]
+}

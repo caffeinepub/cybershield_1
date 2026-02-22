@@ -1,0 +1,59 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-sign-policy-button-to-each-policycard-component-that-calls-the-backend-sign-function-and-updates-the-ui-to-show-signature-status",
+      "featureTitle": "Add a 'Sign Policy' button to each PolicyCard component that calls the backend sign function and updates the UI to show signature status",
+      "files": [
+        "frontend/src/components/policies/PolicyCard.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-signature-verification-status-on-the-securitypolicies-page-showing-whether-each-policy-s-signature-is-valid-invalid-or-unsigned",
+      "featureTitle": "Display signature verification status on the SecurityPolicies page showing whether each policy's signature is valid, invalid, or unsigned",
+      "files": [
+        "frontend/src/components/policies/PolicyCard.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-react-query-hooks-for-signing-policies-and-verifying-policy-signatures-with-proper-cache-invalidation",
+      "featureTitle": "Create React Query hooks for signing policies and verifying policy signatures with proper cache invalidation",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

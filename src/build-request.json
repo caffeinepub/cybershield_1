@@ -1,0 +1,137 @@
+{
+  "kind": "build_request",
+  "title": "Add digital signature functionality for network configurations and security policies",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "text": "Add a digital signature field to the SecurityPolicy type in the backend that stores a cryptographic signature string for each policy",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "SecurityPolicy type includes a signature field of type Text",
+        "The signature field can be null for unsigned policies",
+        "Existing policies are not broken by the schema change"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Create a backend function to sign a security policy that accepts a policy ID and generates a cryptographic signature based on the policy content",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Function accepts a policy ID as input",
+        "Function generates a signature from policy data (name, description, type, enabled status)",
+        "Function updates the policy with the generated signature",
+        "Function returns the signed policy or an error"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Create a backend function to verify a policy signature that checks if the stored signature matches the current policy content",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Function accepts a policy ID as input",
+        "Function validates the signature against current policy data",
+        "Function returns true if signature is valid, false otherwise",
+        "Function handles unsigned policies gracefully"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Add a 'Sign Policy' button to each PolicyCard component that calls the backend sign function and updates the UI to show signature status",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each policy card displays a 'Sign Policy' button",
+        "Button is disabled if policy is already signed",
+        "Clicking the button triggers the sign mutation",
+        "UI shows loading state during signing",
+        "Success/error toast notifications are displayed",
+        "Signed status is visually indicated with an icon or badge"
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Display signature verification status on the SecurityPolicies page showing whether each policy's signature is valid, invalid, or unsigned",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each policy card shows signature status with color-coded badge",
+        "Status options: 'Signed & Valid' (green), 'Invalid Signature' (red), 'Unsigned' (gray)",
+        "Status is automatically verified when policies are loaded",
+        "Status updates when policies are modified or signed"
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Create React Query hooks for signing policies and verifying policy signatures with proper cache invalidation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-2"
+        ],
+        "quotes": [
+          "digital signatures for network configurations or security policies"
+        ]
+      },
+      "acceptanceCriteria": [
+        "useSignPolicy mutation hook calls the backend sign function",
+        "useVerifyPolicySignature query hook calls the backend verify function",
+        "Signing a policy invalidates the policies query cache",
+        "Hooks follow the same pattern as existing useQueries hooks"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify the existing SecurityPolicy CRUD operations",
+    "Maintain backward compatibility with existing unsigned policies",
+    "Keep signature generation logic in the backend actor"
+  ],
+  "nonGoals": [
+    "Implementing actual cryptographic signing algorithms (use mock/simulated signatures)",
+    "Adding user-specific signing keys or certificate management",
+    "Signing network configurations (focus on security policies only for this request)",
+    "Audit trail or signature history tracking"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

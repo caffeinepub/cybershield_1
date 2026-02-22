@@ -1,0 +1,50 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-22T18:38:55.954Z",
+  "summary": "The diff implements most requirements for digital signature functionality. Backend adds signature field, sign/verify functions, and migration. Frontend adds Sign Policy button, signature status badges, and React Query hooks. However, signature generation logic is in frontend instead of backend, and one mutation hook may be missing proper functionality.",
+  "missing_requirements": [
+    {
+      "id": "REQ-12",
+      "requirement": "Backend function to sign a security policy that generates a cryptographic signature",
+      "reason": "The backend does not contain a signPolicy function. The signature generation logic is implemented in the frontend useSignPolicy hook (client-side) rather than in the backend actor as required by the constraint 'Keep signature generation logic in the backend actor'",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "requirement": "Backend function to verify a policy signature",
+      "reason": "No verifyPolicySignature function is visible in the truncated backend/main.mo. Only storePolicySignature is called from frontend, suggesting the verify function may be missing or not shown in truncated content",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Migration module for handling schema changes",
+      "reason": "BuildRequest does not mention creating a migration module. The migration.mo file was added to handle backward compatibility, but this implementation detail was not requested",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    },
+    {
+      "description": "Client-side signature generation in useSignPolicy hook",
+      "reason": "The signature generation uses btoa() and Date.now() in the frontend, which violates the constraint 'Keep signature generation logic in the backend actor'. The BuildRequest specifies backend should generate signatures",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    }
+  ],
+  "confidence": 0.75,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/components/policies/PolicyCard.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "project_state.json"
+  ]
+}

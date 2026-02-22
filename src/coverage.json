@@ -1,0 +1,89 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-22T18:38:55.957Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 6,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-11",
+        "summary": "Add a digital signature field to the SecurityPolicy type in the backend that stores a cryptographic signature string for each policy",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Create a backend function to sign a security policy that accepts a policy ID and generates a cryptographic signature based on the policy content",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Create a backend function to verify a policy signature that checks if the stored signature matches the current policy content",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Add a 'Sign Policy' button to each PolicyCard component that calls the backend sign function and updates the UI to show signature status",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/policies/PolicyCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/policies/PolicyCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Display signature verification status on the SecurityPolicies page showing whether each policy's signature is valid, invalid, or unsigned",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/policies/PolicyCard.tsx",
+          "frontend/src/pages/SecurityPolicies.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/policies/PolicyCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Create React Query hooks for signing policies and verifying policy signatures with proper cache invalidation",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/policies/PolicyCard.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
